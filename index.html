@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Princy 🌷</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  font-family:"Segoe UI",sans-serif;
+  overflow:hidden;
+  background:linear-gradient(#bdeeff 0%,#e7fbd8 55%,#8bd17c 100%);
+  color:#30452d;
+}
+
+.screen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  transition:1s ease;
+}
+
+.hidden{
+  opacity:0;
+  pointer-events:none;
+  transform:scale(1.08);
+}
+
+.card{
+  width:min(520px,94vw);
+  padding:32px 24px;
+  text-align:center;
+  border-radius:30px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(14px);
+  box-shadow:0 20px 60px rgba(70,110,70,.25);
+  border:1px solid rgba(255,255,255,.8);
+}
+
+h1{
+  font-size:clamp(30px,8vw,52px);
+  color:#4d7b50;
+  margin-bottom:12px;
+}
+
+h2{
+  color:#587b55;
+  margin-bottom:14px;
+}
+
+p{
+  font-size:18px;
+  line-height:1.65;
+  margin:10px 0;
+}
+
+button{
+  border:0;
+  margin-top:20px;
+  padding:14px 25px;
+  border-radius:999px;
+  background:#72ad69;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(60,110,60,.25);
+  transition:.25s;
+}
+
+button:hover{
+  transform:translateY(-3px) scale(1.03);
+  background:#609d5b;
+}
+
+.emoji{
+  font-size:70px;
+  margin-bottom:10px;
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  50%{transform:translateY(-10px)}
+}
+
+/* Garden */
+#garden{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:
+    linear-gradient(#b9edff 0 53%,#9cdb82 53% 100%);
+}
+
+.sun{
+  position:absolute;
+  top:35px;
+  right:35px;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#fff39a;
+  box-shadow:0 0 50px #fff0a0;
+}
+
+.cloud{
+  position:absolute;
+  font-size:55px;
+  opacity:.8;
+  animation:cloudMove 25s linear infinite;
+}
+
+.c1{top:70px;left:-100px}
+.c2{top:150px;left:-300px;animation-delay:8s}
+
+@keyframes cloudMove{
+  to{transform:translateX(120vw)}
+}
+
+.ground{
+  position:absolute;
+  bottom:0;
+  height:47%;
+  width:100%;
+  background:
+    radial-gradient(circle at 20% 30%,#75b765 0 2px,transparent 3px),
+    radial-gradient(circle at 70% 60%,#65a956 0 2px,transparent 3px),
+    #82c86f;
+}
+
+.gardenUI{
+  position:absolute;
+  top:15px;
+  left:15px;
+  right:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:10;
+}
+
+.counter{
+  background:rgba(255,255,255,.8);
+  padding:10px 16px;
+  border-radius:20px;
+  font-weight:bold;
+}
+
+.messageBox{
+  position:absolute;
+  top:75px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(450px,90vw);
+  background:rgba(255,255,255,.9);
+  padding:15px 20px;
+  border-radius:22px;
+  text-align:center;
+  z-index:10;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.flower{
+  position:absolute;
+  bottom:20%;
+  font-size:45px;
+  cursor:pointer;
+  animation:grow .6s ease-out;
+  filter:drop-shadow(0 5px 4px rgba(0,0,0,.15));
+  user-select:none;
+}
+
+@keyframes grow{
+  from{
+    transform:scale(0) translateY(40px);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+.flower:hover{
+  transform:scale(1.25) rotate(5deg);
+}
+
+#finalGarden{
+  z-index:20;
+  background:rgba(255,255,255,.18);
+}
+
+/* floating hearts */
+.heart{
+  position:absolute;
+  font-size:25px;
+  animation:heartUp 2s ease-out forwards;
+  pointer-events:none;
+  z-index:100;
+}
+
+@keyframes heartUp{
+  0%{transform:translateY(0) scale(.5);opacity:0}
+  20%{opacity:1}
+  100%{transform:translateY(-180px) scale(1.4);opacity:0}
+}
+
+.small{
+  font-size:14px;
+  opacity:.75;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- STAGE 1 -->
+<section class="screen" id="stage1">
+  <div class="card">
+    <div class="emoji">🌱</div>
+    <h1>Hey Princy...</h1>
+    <p>
+      Ye website koi normal website nahi hai.  
+      Ye ek chhota sa garden hai...
+      <br><br>
+      <b>sirf tumhare liye. 🌷</b>
+    </p>
+    <button onclick="nextStage(2)">Garden mein chalo 🌱</button>
+  </div>
+</section>
+
+<!-- STAGE 2 -->
+<section class="screen hidden" id="stage2">
+  <div class="card">
+    <div class="emoji">🫂</div>
+    <h2>Sabse pehle ek baat...</h2>
+    <p>
+      Tumhe har cheez ka answer abhi nahi chahiye.
+      <br><br>
+      Har problem ko solve karna zaroori nahi hota.
+      Kabhi-kabhi bas <b>thoda sa breathe karna</b> bhi enough hota hai. 🍃
+    </p>
+    <button onclick="nextStage(3)">Ek aur dekho 🌸</button>
+  </div>
+</section>
+
+<!-- STAGE 3 -->
+<section class="screen hidden" id="stage3">
+  <div class="card">
+    <div class="emoji">🦋</div>
+    <h2>Overthinking wali madam 😭</h2>
+    <p>
+      Tumhara brain har chhoti baat ko
+      <b>100 baar replay</b> karta hai...
+      <br><br>
+      Lekin suno —
+      <br>
+      <b>har thought sach nahi hota.</b>
+    </p>
+    <button onclick="nextStage(4)">Sach mein? 🥺</button>
+  </div>
+</section>
+
+<!-- STAGE 4 -->
+<section class="screen hidden" id="stage4">
+  <div class="card">
+    <div class="emoji">🌷</div>
+    <h2>Haan, bilkul.</h2>
+    <p>
+      Jo tum soch rahi ho,
+      zaroori nahi ki wahi reality ho.
+      <br><br>
+      Kabhi-kabhi mind bas thak jaata hai
+      aur unnecessary stories bana leta hai.
+    </p>
+    <button onclick="nextStage(5)">Flower grow kare? 🌱</button>
+  </div>
+</section>
+
+<!-- STAGE 5 -->
+<section class="screen hidden" id="stage5">
+  <div class="card">
+    <div class="emoji">🌼</div>
+    <h2>Ek flower tumhare liye.</h2>
+    <p>
+      Jaise ye flower slowly grow karta hai,
+      waise hi tum bhi slowly grow kar rahi ho.
+      <br><br>
+      <b>Slow hona = fail hona nahi hota.</b>
+    </p>
+    <button onclick="startGarden()">Garden unlock karo 🌺</button>
+  </div>
+</section>
+
+<!-- GARDEN -->
+<div id="garden" class="hidden">
+
+  <div class="sun"></div>
+  <div class="cloud c1">☁️</div>
+  <div class="cloud c2">☁️</div>
+
+  <div class="ground"></div>
+
+  <div class="gardenUI">
+    <div class="counter">🌷 Flowers: <span id="count">0</span>/12</div>
+    <button onclick="plantFlower()" style="margin:0;padding:10px 17px">
+      🌱 Plant
+    </button>
+  </div>
+
+  <div class="messageBox" id="gardenMessage">
+    Har flower ke saath ek little reminder milega. 💗
+  </div>
+
+</div>
+
+<!-- FINAL -->
+<section class="screen hidden" id="finalGarden">
+  <div class="card">
+    <div class="emoji">🌸</div>
+    <h1>Princy’s Garden</h1>
+
+    <p>
+      Dekha? 🌷
+      <br><br>
+      Ek-ek chhoti si cheez milke
+      poora garden bana deti hai.
+      <br><br>
+
+      Waise hi life mein bhi...
+      <br>
+      ek bad day tumhari poori life define nahi karta.
+      <br><br>
+
+      <b>
+      Tum achhi ho.<br>
+      Tum enough ho.<br>
+      Aur tumhe har waqt strong rehne ki zaroorat nahi hai.
+      </b>
+      🫂
+      <br><br>
+
+      Jab bhi overthinking zyada ho,
+      bas yaad rakhna —
+      <br>
+      <b>“Ye thought hai, fact nahi.”</b> 🌿
+    </p>
+
+    <button onclick="location.reload()">Garden dobara dekho 🌷</button>
+
+    <div class="small">
+      Made with a little care, just for Princy. 🤍
+    </div>
+  </div>
+</section>
+
+<script>
+
+let currentStage=1;
+
+function nextStage(num){
+
+  document.getElementById("stage"+currentStage)
+    .classList.add("hidden");
+
+  document.getElementById("stage"+num)
+    .classList.remove("hidden");
+
+  currentStage=num;
+
+  hearts();
+}
+
+function startGarden(){
+
+  document.getElementById("stage5").classList.add("hidden");
+
+  const garden=document.getElementById("garden");
+  garden.classList.remove("hidden");
+
+  setTimeout(()=>{
+    plantFlower();
+  },400);
+}
+
+const messages=[
+  "Tumhe sab kuch figure out karne ki zaroorat nahi hai. 🌷",
+  "Aaj ka din kharab tha, tum kharab nahi ho. 🫂",
+  "Jo tum feel kar rahi ho, woh valid hai. 🤍",
+  "Thoda rest karna bhi progress hai. 🌿",
+  "Har thought ko answer dena zaroori nahi. 🦋",
+  "Tum jitna sochti ho, usse kahin zyada strong ho. 🌸",
+  "Please khud se bhi utna hi pyaar karo jitna dusron se karti ho. 💗",
+  "Future ko aaj solve karne ki zaroorat nahi. ☁️",
+  "Breathe. One thing at a time. 🍃",
+  "Tumhari smile bhi important hai. 🌼",
+  "Sab theek hone mein time lag sakta hai... and that's okay. 🌻",
+  "Aur haan... overthinking wali madam, thoda chill bhi kar liya karo 😭😂❤️"
+];
+
+let flowers=0;
+
+function plantFlower(){
+
+  if(flowers>=12) return;
+
+  flowers++;
+
+  const flower=document.createElement("div");
+  flower.className="flower";
+
+  const flowerTypes=["🌷","🌸","🌼","🌻","🌺","🪻"];
+
+  flower.innerText=
+    flowerTypes[Math.floor(Math.random()*flowerTypes.length)];
+
+  flower.style.left=(5+Math.random()*90)+"%";
+  flower.style.bottom=(8+Math.random()*35)+"%";
+  flower.style.fontSize=(35+Math.random()*25)+"px";
+
+  flower.onclick=()=>{
+    document.getElementById("gardenMessage").innerText=
+      messages[Math.floor(Math.random()*messages.length)];
+
+    hearts();
+  };
+
+  document.getElementById("garden").appendChild(flower);
+
+  document.getElementById("count").innerText=flowers;
+
+  document.getElementById("gardenMessage").innerText=
+    messages[flowers-1];
+
+  hearts();
+
+  if(flowers===12){
+
+    setTimeout(()=>{
+      document.getElementById("garden")
+        .classList.add("hidden");
+
+      document.getElementById("finalGarden")
+        .classList.remove("hidden");
+
+      bigHearts();
+    },1200);
+  }
+}
+
+function hearts(){
+
+  for(let i=0;i<5;i++){
+
+    const heart=document.createElement("div");
+
+    heart.className="heart";
+    heart.innerText=["💗","💖","💕","🤍","🌸"]
+      [Math.floor(Math.random()*5)];
+
+    heart.style.left=(35+Math.random()*30)+"%";
+    heart.style.bottom="35%";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },2000);
+  }
+}
+
+function bigHearts(){
+
+  for(let i=0;i<25;i++){
+
+    setTimeout(()=>{
+      const heart=document.createElement("div");
+
+      heart.className="heart";
+      heart.innerText="💗";
+
+      heart.style.left=Math.random()*100+"%";
+      heart.style.bottom="10%";
+
+      document.body.appendChild(heart);
+
+      setTimeout(()=>heart.remove(),2200);
+
+    },i*100);
+  }
+}
+
+</script>
+
+</body>
+</html>
